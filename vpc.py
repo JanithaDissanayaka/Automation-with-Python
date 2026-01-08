@@ -24,6 +24,7 @@ vpc.create_tags(
 all_avilable_vpcs=ec2_client.describe_vpcs()
 vpcs=all_avilable_vpcs["Vpcs"]
 
+
 for vpc in vpcs:
     print(vpc["VpcId"])
     association_set=vpc["CidrBlockAssociationSet"]

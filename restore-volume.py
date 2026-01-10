@@ -29,3 +29,30 @@ snapshots = client.describe_snapshots(
 
 latest_snap_shot=sorted(snapshots['Snapshots'],key=itemgetter('StartTime'),reverse=True)[0]
 print(latest_snap_shot['StartTime'])
+
+new_Volume=create_volume=client.create_volume(
+    SnapshotId=latest_snap_shot['SnapshotId'],
+    AvailabilityZone='ap-south-1b',
+    TagSpecifications=[
+        {
+            'ResourceType':'volume',
+            'Tags': [
+                {
+                    'Key': 'Name',
+                    'Value': 'prod'
+                },
+            ]
+        }
+    ]
+)
+
+while True:
+    vol=resource.Volume(new_Volume['VolumeId'])
+    print(vol.state)
+    if vol.state=="available":
+        resource.Instance(instance_id).attach_volume(
+            VolumeId=new_Volume['VolumeId'],
+            Device='/dev/xvdb'
+            
+        )
+        break

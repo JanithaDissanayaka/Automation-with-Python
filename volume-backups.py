@@ -21,7 +21,7 @@ def volume_backup():
         )
         print(new_sanpshot)
 
-schedule.every(10).seconds.do(volume_backup)
+schedule.every(20).seconds.do(volume_backup)
 
 while True:
     schedule.run_pending()

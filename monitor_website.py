@@ -17,3 +17,5 @@ with smtplib.SMTP('smtp.gmail.com',587) as smtp:
     smtp.starttls()
     smtp.ehlo()
     smtp.login(EMAIL_ADDRESS,EMAIL_PASSWORD)
+    msg="Subject:Site is not working\n Fix the Issue"
+    smtp.sendmail(EMAIL_ADDRESS,EMAIL_ADDRESS,msg)

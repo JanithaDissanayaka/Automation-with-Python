@@ -1,5 +1,11 @@
 import requests
 import smtplib
+import os
+
+EMAIL_ADDRESS=os.environ.get('EMAIL_ADDRESS')
+EMAIL_PASSWORD=os.environ.get('EMAIL_PASSWORD')
+
+
 
 response=requests.get('http://ec2-35-154-161-68.ap-south-1.compute.amazonaws.com:8080/')
 if response.status_code==200:
@@ -10,4 +16,4 @@ else:
 with smtplib.SMTP('smtp.gmail.com',587) as smtp:
     smtp.starttls()
     smtp.ehlo()
-    smtp.login("testworks454@gmail.com","")
+    smtp.login(EMAIL_ADDRESS,EMAIL_PASSWORD)

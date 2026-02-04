@@ -58,7 +58,7 @@ def reboot_and_resatrt():
 
 def monitor_application():
     try:
-        response=requests.get('http://ec2-13-201-35-158.ap-south-1.compute.amazonaws.com:8080/')
+        response=requests.get('dns url')
         if response.status_code==200:   
             print("Application running successfully")
         else:
